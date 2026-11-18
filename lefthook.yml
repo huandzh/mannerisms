@@ -1,0 +1,15 @@
+# One hook config for the local gate (scripts/check.mjs).
+# pre-commit stays fast; pre-push runs the whole gate.
+pre-commit:
+  parallel: true
+  commands:
+    whitespace:
+      run: git diff --cached --check
+    skills:
+      glob: '{**/SKILL.md,README.md,docs/provenance.md,scripts/*.mjs}'
+      run: node scripts/validate-skills.mjs
+
+pre-push:
+  commands:
+    gate:
+      run: node scripts/check.mjs
