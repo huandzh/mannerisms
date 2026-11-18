@@ -332,16 +332,19 @@ rewritten.
 
 ## 10. Verification checklist
 
-- [ ] validator exits 0 with both skills; a deliberately broken frontmatter exits 1 (the gate is real).
-- [ ] `cargo test` passes; release build produces `cmt`; the wrapper finds it without `CMT_BIN`.
+- [x] validator exits 0 with both skills; a deliberately broken frontmatter exits 1 (the gate is real).
+- [x] `cargo test` passes; release build produces `cmt`; the wrapper finds it without `CMT_BIN`.
 - [ ] DSH catalog lists `local-plan` and `comment-discuss`; both bodies load.
 - [ ] `/local-plan` creates a plan; `cmt scan` → close → validate reaches exit 0.
-- [ ] README catalog == provenance == on-disk skills (validator enforces).
-- [ ] `git ls-files` contains no `.exe`, no secret, no file > 5 MB.
-- [ ] copy `comment-discuss/` alone into a scratch repo; the skill still runs (portability).
-- [ ] fresh `git clone` + `node scripts/check.mjs` on a clean machine.
-- [ ] default branch is `master`; history intact (no force-push, one commit per phase).
-- [ ] the language probe result is recorded and matches what shipped.
+- [x] README catalog == provenance == on-disk skills (validator enforces).
+- [x] `git ls-files` contains no `.exe`, no secret, no file > 5 MB.
+- [x] copy `comment-discuss/` alone into a scratch repo; the skill still runs (portability).
+- [x] fresh `git clone` + `node scripts/check.mjs` on a clean machine.
+- [x] default branch is `master`; history intact (no force-push, one commit per phase).
+- [x] the language probe result is recorded and matches what shipped.
+
+Checked on 2026-11-18. The two unchecked items need a DSH client session: this host has no headless
+catalog to query, so they stay manual until one exists.
 
 ## 11. Assumptions and non-blocking decisions
 
@@ -386,6 +389,11 @@ resolutions, in comment order:
 | 274  | Port by copy + de-privatization patch list; no rewrite.                        |
 | 345  | Claude Code compatibility removed; the open standard is the only contract.     |
 | 356  | Deferred items confirmed and dated.                                            |
+
+**Execution — 2026-11-18.** Phases 1–6 landed on `master` as `8120d38`…`141edf7`; phase 7 verified with
+a fresh-clone gate (`GATE PASS`) and a cold-copy portability run of `comment-discuss` (built from the
+vendored crate, closed its comments, exit 0). `v0.1.0` is deliberately untagged: tag it once the GitHub
+remote exists.
 
 **Language probe (n=2, same model, 2026-11-18).** Two arms read `comment-discuss` in Chinese-only vs
 Chinese + a 20-line English digest, then answered the same four questions on a probe document holding
