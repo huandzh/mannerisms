@@ -1,0 +1,22 @@
+[package]
+name = "comment-discuss"
+version = "0.1.0"
+edition = "2021"
+description = "Fast in-file discussion comment scanner, validator and closer for text files (· / ·· protocol)"
+license = "MIT"
+publish = false
+
+[[bin]]
+name = "cmt"
+path = "src/main.rs"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+# Standalone crate: never absorbed by a parent workspace.
+[workspace]
