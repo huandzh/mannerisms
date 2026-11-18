@@ -1,0 +1,33 @@
+# --- Build output ---
+target/
+node_modules/
+dist/
+
+# The bundled cmt binary is built locally, never committed.
+.agents/skills/comment-discuss/bin/*
+!.agents/skills/comment-discuss/bin/.gitkeep
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+
+# --- Harness and local state ---
+.dsh/
+.sessions/
+.worktrees/
+.temp/
+
+# --- Client-specific local files ---
+# This repo ships no CLAUDE.md and no .claude/; a local one stays untracked.
+CLAUDE.md
+.claude/
+
+# --- Editor and OS noise ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.log
